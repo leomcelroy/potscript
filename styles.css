@@ -1,0 +1,107 @@
+
+html, body {
+  margin: 0px;
+  padding: 0px;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  font-family: sans-serif;
+}
+
+.box-container {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  overflow: scroll;
+  background: gainsboro;
+}
+
+.box {
+  aspect-ratio: 1;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+}
+
+.draggable-box {
+  height: 100%;
+  aspect-ratio: 1;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+}
+
+.root {
+  width: 100vw;
+  height: 100vh;
+  overflow: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  background: whitesmoke;
+}
+
+.height-layers {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: #ebebeb;
+  padding: 10px;
+  /* opacity: .7; */
+  border-radius: 0px 0px 0px 10px;
+}
+
+.view-window {
+  height: 60%;
+  background: black;
+}
+
+.dictionary {
+  flex: 1;
+  background: #f4f3f3;
+  padding: 5px;
+  overflow: scroll;
+}
+
+.program {
+  display: flex;
+  margin: 5px;
+}
+
+.program-name {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 100px;
+}
+
+.program-boxes {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 5px;
+  overflow: scroll;
+  background: gainsboro;
+  flex: 1;
+}
+
+.editor-modal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  background: gainsboro;
+  width: 400px;
+  height: 400px;
+/*  translate: -50%;*/
+  right: 0px;
+  bottom: 0px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding: 10px;
+}
