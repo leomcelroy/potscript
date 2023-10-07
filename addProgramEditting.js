@@ -106,7 +106,7 @@ export function addProgramEditting(state) {
 
     removed = true;
     dragged = true;
-
+    downTarget = null;
   })
 
   listener("pointerup", "", e => {
