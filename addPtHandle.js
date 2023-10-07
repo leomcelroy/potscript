@@ -16,7 +16,7 @@ export function addPtHandle(state) {
     const els = elsAtLoc(e.clientX, e.clientY, ".pt-handle");
     if (els.length === 0) return;
     draggedElement = els[0];
-    // draggedElement.setAttribute('pointer-events', 'none');
+    draggedElement.setAttribute('pointer-events', 'none');
     svg = draggedElement.ownerSVGElement;
   })
 
