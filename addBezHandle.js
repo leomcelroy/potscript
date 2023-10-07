@@ -8,6 +8,10 @@ export function addBezHandle(state) {
   let draggedElement = null;
   let svg = null;
 
+  listener("touchstart", ".bez-handle", e => {
+    e.preventDefault();
+  }, { passive: false })
+
   listener("pointerdown", ".bez-handle", (e) => {
     const els = elsAtLoc(e.clientX, e.clientY, ".bez-handle");
 
