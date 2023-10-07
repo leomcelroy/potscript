@@ -26,9 +26,9 @@ export function addProgramEditting(state) {
   // })
 
 
-  // listener("touchstart", ".box, .macro-name, .draggable-box", e => {
-  //   e.preventDefault();
-  // }, { passive: false })
+  listener("touchstart", ".box, .macro-name", e => {
+    e.preventDefault();
+  }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
     const trigger = e.target;
@@ -48,11 +48,7 @@ export function addProgramEditting(state) {
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
 
-    console.log(state.dragId);
-
     fromToolbox = true;
-
-    window.addEventListener("touchstart", touchStartEvent, { passive: false })
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -77,11 +73,6 @@ export function addProgramEditting(state) {
     STATE.mouse.y = e.clientY;
 
     fromToolbox = true;
-
-    window.addEventListener("touchstart", touchStartEvent, { passive: false })
-
-
-
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
