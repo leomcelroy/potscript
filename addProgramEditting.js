@@ -17,7 +17,7 @@ export function addProgramEditting(state) {
       downTarget = e.target;
     }
 
-    e.preventDefault();
+    if (dragged) e.preventDefault();
   }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
@@ -72,7 +72,7 @@ export function addProgramEditting(state) {
 
   listener("pointerdown", ".draggable-box", (e) => {
     downTarget = e.target;
-    
+
     const trigger = e.target;
     const index = Number(trigger.dataset.index);
     const name = trigger.dataset.programName;
