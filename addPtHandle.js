@@ -8,7 +8,7 @@ export function addPtHandle(state) {
   let draggedElement = null;
   let svg = null;
 
-  listener("touchstart", ".pt-handle", e => {
+  listener("touchstart", "svg", e => {
     e.preventDefault();
   }, { passive: false })
 
