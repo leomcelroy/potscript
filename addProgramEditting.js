@@ -11,17 +11,17 @@ export function addProgramEditting(state) {
 
   let downTarget = null;
 
-  listener("touchend", ".draggable-box", e => {
-    const { programName, index} = e.target.dataset;
+  // listener("touchend", ".draggable-box", e => {
+  //   const { programName, index} = e.target.dataset;
 
-    const value = state.programs[programName][index];
+  //   const value = state.programs[programName][index];
 
-    state.editor = value;
-  })
+  //   state.editor = value;
+  // })
 
 
   listener("touchstart", ".box, .macro-name, .draggable-box", e => {
-    e.preventDefault();
+    // e.preventDefault();
   }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
