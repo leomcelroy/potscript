@@ -440,7 +440,7 @@ const renderLoop = () => {
 
 renderLoop();
 
-window.addEventListener("mousemove", e => {
+window.addEventListener("pointermove", e => {
   // STATE.domPath = e.composedPath();
   // console.log(STATE.domPath);
   STATE.mouse.x = e.clientX;
