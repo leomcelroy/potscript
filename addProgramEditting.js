@@ -17,7 +17,7 @@ export function addProgramEditting(state) {
       downTarget = e.target;
     }
 
-    if (dragged || fromToolbox || removed) e.preventDefault();
+    if (downTarget === null) e.preventDefault();
   }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
