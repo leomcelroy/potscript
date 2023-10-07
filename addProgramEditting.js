@@ -1,11 +1,6 @@
-
 import { createListener } from "./createListener.js"
 
-const listenerObject = {
-    handleEvent(e) {
-        if (e.cancelable) e.preventDefault();
-    }
-};
+
 
 export function addProgramEditting(state) {
   const listener = createListener(document.body);
@@ -13,6 +8,10 @@ export function addProgramEditting(state) {
   let removed = false;
   let fromToolbox = false;
   let dragged = false;
+
+  listener("touchstart", ".box, .macro-name, .draggable-box", e => {
+    e.preventDefault();
+  }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
     const trigger = e.target;
@@ -36,8 +35,7 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    window.addEventListener("touchmove", listenerObject, {passive: false});
-    e.preventDefault();
+
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -63,8 +61,8 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    window.addEventListener("touchmove", listenerObject, {passive: false});
-    e.preventDefault();
+
+
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
@@ -86,8 +84,7 @@ export function addProgramEditting(state) {
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
 
-    window.addEventListener("touchmove", listenerObject, {passive: false});
-    e.preventDefault();
+
   });
 
   listener("pointermove", "", e => {
@@ -104,9 +101,7 @@ export function addProgramEditting(state) {
 
     removed = true;
     dragged = true;
-    
-    window.addEventListener("touchmove", listenerObject, {passive: false});
-    e.preventDefault();
+
   })
 
   listener("pointerup", "", e => {
@@ -149,7 +144,6 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-    window.removeEventListener("touchmove", listenerObject, {passive: false});
     removed = false;
     fromToolbox = false;
     dragged = false;
