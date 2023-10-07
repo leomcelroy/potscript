@@ -2,8 +2,8 @@
 import { createListener } from "./createListener.js"
 
 const listenerObject = {
-    handleEvent(event) {
-        event.preventDefault();
+    handleEvent(e) {
+        if (e.cancelable) e.preventDefault();
     }
 };
 
