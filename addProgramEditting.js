@@ -9,7 +9,12 @@ export function addProgramEditting(state) {
   let fromToolbox = false;
   let dragged = false;
 
+  let downTarget = null;
+
+
   listener("touchstart", ".box, .macro-name, .draggable-box", e => {
+    if (e.target.matches(".draggable-box")) downTarget = e.target;
+    
     e.preventDefault();
   }, { passive: false })
 
@@ -121,8 +126,6 @@ export function addProgramEditting(state) {
     insertAtIndex(targetArr, JSON.parse(JSON.stringify(state.dragId.data)), Number(el.dataset.index));
     
   })
-
-  let downTarget = null;
 
   listener("pointerdown", ".draggable-box", e => {
     downTarget = e.target;
