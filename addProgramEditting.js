@@ -104,10 +104,7 @@ export function addProgramEditting(state) {
     if (state.programs[name].length === 0 && name !== "main") delete state.programs[name];
 
     removed = true;
-
-    if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
-      dragged = true;
-    }
+    dragged = true;
     
   })
 
@@ -133,8 +130,12 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", (e) => {
+    const deltaX = event.clientX - initialX;
+    const deltaY = event.clientY - initialY;
+
     if (!downTarget.matches(".draggable-box")) return;
-    if (dragged || fromToolbox) return;
+    if (fromToolbox) return;
+    if (Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3) return;
 
     const { programName, index} = downTarget.dataset;
 
