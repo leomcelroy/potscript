@@ -1,13 +1,6 @@
 import { createListener } from "./createListener.js"
 
 
-const touchStartEvent = {
-  eventHandler: (e) => {
-    e.preventDefault
-  }
-}
-
-
 export function addProgramEditting(state) {
   const listener = createListener(document.body);
 
@@ -17,16 +10,12 @@ export function addProgramEditting(state) {
 
   let downTarget = null;
 
-  // listener("touchend", ".draggable-box", e => {
-  //   const { programName, index} = e.target.dataset;
-
-  //   const value = state.programs[programName][index];
-
-  //   state.editor = value;
-  // })
+  listener("pointerdown", "", e => {
+    downTarget = e.target;
+  })
 
 
-  listener("touchstart", ".box, .macro-name", e => {
+  listener("touchstart", ".box, .macro-name, .draggable-box", e => {
     e.preventDefault();
   }, { passive: false })
 
@@ -76,8 +65,6 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
-    downTarget = e.target;
-
     const trigger = e.target;
     const index = Number(trigger.dataset.index);
     const name = trigger.dataset.programName;
@@ -95,8 +82,6 @@ export function addProgramEditting(state) {
 
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
-
-    window.addEventListener("touchstart", touchStartEvent, { passive: false })
   });
 
   listener("pointermove", "", e => {
@@ -119,11 +104,9 @@ export function addProgramEditting(state) {
     if (!removed && !fromToolbox) return;
     if (state.dragId === null) return;
 
-    const els = elsAtLoc(e.clientX, e.clientY, ".draggable-box, .program-spacer-start, .program-spacer-end");
+    if (downTarget === null || !downTarget.matches(".draggable-box, .program-spacer-start, .program-spacer-end")) return;
 
-    if (els.length === 0) return;
-
-    const el = els[0];
+    const el = downTarget;
 
     const hoverId = {
       name: el.dataset.programName,
@@ -137,7 +120,7 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", (e) => {
-    if (downTarget === null) return;
+    if (!downTarget.matches(".draggable-box")) return;
     if (dragged || fromToolbox) return;
 
     const { programName, index} = downTarget.dataset;
@@ -153,7 +136,7 @@ export function addProgramEditting(state) {
     fromToolbox = false;
     dragged = false;
     state.dragId = null;
-    downTarget = null;
+    downTarget = null 
   })
 }
 
