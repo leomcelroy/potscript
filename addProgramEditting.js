@@ -29,6 +29,8 @@ export function addProgramEditting(state) {
     console.log(state.dragId);
 
     fromToolbox = true;
+
+    document.addEventListener("touchmove", e => e.preventDefault(), {passive: false});
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -52,6 +54,7 @@ export function addProgramEditting(state) {
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
 
+    document.addEventListener("touchmove", e => e.preventDefault(), {passive: false});
 
     fromToolbox = true;
   })
