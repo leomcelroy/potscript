@@ -8,6 +8,10 @@ export function addPtHandle(state) {
   let draggedElement = null;
   let svg = null;
 
+  listener("touchstart", ".pt-handle", e => {
+    e.preventDefault();
+  }, { passive: false })
+
   listener("pointerdown", ".pt-handle", e => {
     const els = elsAtLoc(e.clientX, e.clientY, ".pt-handle");
     if (els.length === 0) return;
