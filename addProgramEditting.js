@@ -1,6 +1,12 @@
 
 import { createListener } from "./createListener.js"
 
+const listenerObject = {
+    handleEvent(event) {
+        e.preventDefault();
+    }
+};
+
 export function addProgramEditting(state) {
   const listener = createListener(document.body);
 
@@ -30,7 +36,7 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    document.addEventListener("touchmove", e => e.preventDefault(), {passive: false});
+    document.addEventListener("touchmove", listenerObject, {passive: false});
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -54,7 +60,7 @@ export function addProgramEditting(state) {
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
 
-    document.addEventListener("touchmove", e => e.preventDefault(), {passive: false});
+    document.addEventListener("touchmove", listenerObject, {passive: false});
 
     fromToolbox = true;
   })
@@ -113,7 +119,7 @@ export function addProgramEditting(state) {
     const targetArr = state.programs[hoverId.name];
 
     insertAtIndex(targetArr, JSON.parse(JSON.stringify(state.dragId.data)), Number(el.dataset.index));
-  
+    
   })
 
   listener("pointerup", "", (e) => {
@@ -134,6 +140,7 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
+    document.addRemoveListener("touchmove", listenerObject, {passive: false});
 
     removed = false;
     fromToolbox = false;
