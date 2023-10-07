@@ -13,9 +13,9 @@ export function addProgramEditting(state) {
 
 
   listener("touchstart", ".box, .macro-name, .draggable-box", e => {
-    if (e.target.matches(".draggable-box")) {
-      downTarget = e.target;
-    }
+    // if (e.target.matches(".draggable-box")) {
+    //   downTarget = e.target;
+    // }
 
     e.preventDefault();
   }, { passive: false })
