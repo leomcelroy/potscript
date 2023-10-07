@@ -13,8 +13,10 @@ export function addProgramEditting(state) {
 
 
   listener("touchstart", ".box, .macro-name, .draggable-box", e => {
-    if (e.target.matches(".draggable-box")) downTarget = e.target;
-    
+    if (e.target.matches(".draggable-box")) {
+      downTarget = e.target;
+    }
+
     e.preventDefault();
   }, { passive: false })
 
@@ -69,6 +71,8 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
+    downTarget = e.target;
+    
     const trigger = e.target;
     const index = Number(trigger.dataset.index);
     const name = trigger.dataset.programName;
@@ -125,10 +129,6 @@ export function addProgramEditting(state) {
 
     insertAtIndex(targetArr, JSON.parse(JSON.stringify(state.dragId.data)), Number(el.dataset.index));
     
-  })
-
-  listener("pointerdown", ".draggable-box", e => {
-    downTarget = e.target;
   })
 
   listener("pointerup", "", (e) => {
