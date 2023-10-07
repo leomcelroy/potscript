@@ -93,8 +93,6 @@ export function addProgramEditting(state) {
   });
 
   listener("pointermove", "", e => {
-    downTarget = null;
-
     if (removed) return;
     if (fromToolbox) return;
     if (state.dragId === null) return;
@@ -111,7 +109,6 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-
     if (!removed && !fromToolbox) return;
     if (state.dragId === null) return;
 
