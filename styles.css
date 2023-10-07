@@ -98,6 +98,7 @@ html, body {
   background: gainsboro;
   width: 400px;
   max-width: 100%;
+  box-sizing: border-box;
   height: 400px;
 /*  translate: -50%;*/
   right: 0px;

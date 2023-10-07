@@ -34,8 +34,6 @@ export function addProgramEditting(state) {
     console.log(state.dragId);
 
     fromToolbox = true;
-
-
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -83,8 +81,6 @@ export function addProgramEditting(state) {
 
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
-
-
   });
 
   listener("pointermove", "", e => {
@@ -126,17 +122,17 @@ export function addProgramEditting(state) {
     
   })
 
+  let downTarget = null;
+
+  listener("pointerdown", ".draggable-box", e => {
+    downTarget = e.target;
+  })
+
   listener("pointerup", "", (e) => {
+    if (downTarget === null) return;
     if (dragged || fromToolbox) return;
 
-    // if (!e.target.matches(".draggable-box")) return;
-
-    const els = elsAtLoc(e.clientX, e.clientY, ".draggable-box");
-    if (els.length !== 1) return;
-    const [ box ] = els;
-    console.log(e.target);
-    // const box = e.target;
-    const { programName, index} = box.dataset;
+    const { programName, index} = downTarget.dataset;
 
     const value = state.programs[programName][index];
 
@@ -148,6 +144,7 @@ export function addProgramEditting(state) {
     fromToolbox = false;
     dragged = false;
     state.dragId = null;
+    downTarget = null;
   })
 }
 
