@@ -14,7 +14,6 @@ export function addProgramEditting(state) {
     downTarget = e.target;
   })
 
-
   listener("touchstart", ".box, .macro-name, .draggable-box", e => {
     e.preventDefault();
   }, { passive: false })
@@ -104,9 +103,11 @@ export function addProgramEditting(state) {
     if (!removed && !fromToolbox) return;
     if (state.dragId === null) return;
 
-    if (downTarget === null || !downTarget.matches(".draggable-box, .program-spacer-start, .program-spacer-end")) return;
+    const els = elsAtLoc(e.clientX, e.clientY, ".draggable-box, .program-spacer-start, .program-spacer-end");
 
-    const el = downTarget;
+    if (els.length === 0) return;
+
+    const el = els[0];
 
     const hoverId = {
       name: el.dataset.programName,
@@ -131,7 +132,6 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-    window.removeEventListener("touchstart", touchStartEvent)
     removed = false;
     fromToolbox = false;
     dragged = false;
