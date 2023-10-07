@@ -36,10 +36,7 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    window.addEventListener('wheel', listenerObject, { passive: false });  // for mouse scrolling
-    window.addEventListener('touchmove', listenerObject, { passive: false });  // for touch scrolling
-    window.addEventListener('scroll', listenerObject, { passive: false });  // for scrollbar scrolling
-
+    document.body.style.overflow = "hidden";
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -65,10 +62,6 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    window.addEventListener('wheel', listenerObject, { passive: false });  // for mouse scrolling
-    window.addEventListener('touchmove', listenerObject, { passive: false });  // for touch scrolling
-    window.addEventListener('scroll', listenerObject, { passive: false });  // for scrollbar scrolling
-
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
@@ -89,10 +82,6 @@ export function addProgramEditting(state) {
 
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
-
-    window.addEventListener('wheel', listenerObject, { passive: false });  // for mouse scrolling
-    window.addEventListener('touchmove', listenerObject, { passive: false });  // for touch scrolling
-    window.addEventListener('scroll', listenerObject, { passive: false });  // for scrollbar scrolling
 
   });
 
@@ -152,9 +141,8 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-    window.removeEventListener("touchmove", listenerObject);
-    window.removeEventListener("scroll", listenerObject);
-    window.removeEventListener("wheel", listenerObject);
+    document.body.style.overflow = "scroll";
+
     removed = false;
     fromToolbox = false;
     dragged = false;
