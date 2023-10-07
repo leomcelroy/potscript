@@ -36,7 +36,10 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    document.addEventListener("touchmove", listenerObject, {passive: false});
+    window.addEventListener('wheel', listenerObject, { passive: false });  // for mouse scrolling
+    window.addEventListener('touchmove', listenerObject, { passive: false });  // for touch scrolling
+    window.addEventListener('scroll', listenerObject, { passive: false });  // for scrollbar scrolling
+
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -62,7 +65,10 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    document.addEventListener("touchmove", listenerObject, {passive: false});
+    window.addEventListener('wheel', listenerObject, { passive: false });  // for mouse scrolling
+    window.addEventListener('touchmove', listenerObject, { passive: false });  // for touch scrolling
+    window.addEventListener('scroll', listenerObject, { passive: false });  // for scrollbar scrolling
+
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
@@ -81,7 +87,13 @@ export function addProgramEditting(state) {
       shiftY
     };
 
-    document.addEventListener("touchmove", listenerObject, {passive: false});
+    STATE.mouse.x = e.clientX;
+    STATE.mouse.y = e.clientY;
+
+    window.addEventListener('wheel', listenerObject, { passive: false });  // for mouse scrolling
+    window.addEventListener('touchmove', listenerObject, { passive: false });  // for touch scrolling
+    window.addEventListener('scroll', listenerObject, { passive: false });  // for scrollbar scrolling
+
   });
 
   listener("pointermove", "", e => {
@@ -140,7 +152,9 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-    document.removeEventListener("touchmove", listenerObject, {passive: false});
+    window.removeEventListener("touchmove", listenerObject);
+    window.removeEventListener("scroll", listenerObject);
+    window.removeEventListener("wheel", listenerObject);
     removed = false;
     fromToolbox = false;
     dragged = false;
