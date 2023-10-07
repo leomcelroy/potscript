@@ -3,7 +3,7 @@ import { createListener } from "./createListener.js"
 
 const listenerObject = {
     handleEvent(event) {
-        e.preventDefault();
+        event.preventDefault();
     }
 };
 
@@ -36,7 +36,7 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    document.addEventListener("touchmove", listenerObject, {passive: false});
+    e.preventDefault();
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -60,9 +60,9 @@ export function addProgramEditting(state) {
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
 
-    document.addEventListener("touchmove", listenerObject, {passive: false});
-
     fromToolbox = true;
+
+    e.preventDefault();
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
@@ -81,7 +81,7 @@ export function addProgramEditting(state) {
       shiftY
     };
 
-
+    e.preventDefault();
   });
 
   listener("pointermove", "", e => {
@@ -140,8 +140,6 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-    document.addRemoveListener("touchmove", listenerObject, {passive: false});
-
     removed = false;
     fromToolbox = false;
     dragged = false;
