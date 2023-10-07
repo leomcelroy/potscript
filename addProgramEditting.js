@@ -23,6 +23,9 @@ export function addProgramEditting(state) {
       shiftY
     };
 
+    STATE.mouse.x = e.clientX;
+    STATE.mouse.y = e.clientY;
+
     console.log(state.dragId);
 
     fromToolbox = true;
@@ -45,6 +48,9 @@ export function addProgramEditting(state) {
 
     data.shiftX = e.clientX - trigger.getBoundingClientRect().left;
     data.shiftY = e.clientY - trigger.getBoundingClientRect().top;
+
+    STATE.mouse.x = e.clientX;
+    STATE.mouse.y = e.clientY;
 
 
     fromToolbox = true;

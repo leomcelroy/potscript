@@ -8,7 +8,7 @@ export function addPtHandle(state) {
   let draggedElement = null;
   let svg = null;
 
-  listener("mousedown", ".pt-handle", e => {
+  listener("pointerdown", ".pt-handle", e => {
     const els = elsAtLoc(e.clientX, e.clientY, ".pt-handle");
     if (els.length === 0) return;
     draggedElement = els[0];
@@ -16,7 +16,7 @@ export function addPtHandle(state) {
     svg = draggedElement.ownerSVGElement;
   })
 
-  listener("mousemove", "", e => {
+  listener("pointermove", "", e => {
 
     if (draggedElement && svg) {
       let pt = svg.createSVGPoint();
@@ -43,7 +43,7 @@ export function addPtHandle(state) {
     }
   })
 
-  listener("mouseup", "", e => {
+  listener("pointerup", "", e => {
     if (draggedElement) {
       draggedElement.setAttribute('pointer-events', 'all');
       draggedElement = null;
