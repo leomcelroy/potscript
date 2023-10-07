@@ -1,6 +1,12 @@
 import { createListener } from "./createListener.js"
 
 
+const touchStartEvent = {
+  eventHandler: (e) => {
+    e.preventDefault
+  }
+}
+
 
 export function addProgramEditting(state) {
   const listener = createListener(document.body);
@@ -45,6 +51,8 @@ export function addProgramEditting(state) {
     console.log(state.dragId);
 
     fromToolbox = true;
+
+    window.addEventListener("touchstart", touchStartEvent, { passive: false })
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -70,6 +78,8 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
+    window.addEventListener("touchstart", touchStartEvent, { passive: false })
+
 
 
   })
@@ -94,6 +104,8 @@ export function addProgramEditting(state) {
 
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
+
+    window.addEventListener("touchstart", touchStartEvent, { passive: false })
   });
 
   listener("pointermove", "", e => {
@@ -145,6 +157,7 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
+    window.removeEventListener("touchstart", touchStartEvent)
     removed = false;
     fromToolbox = false;
     dragged = false;
