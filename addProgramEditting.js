@@ -20,9 +20,9 @@ export function addProgramEditting(state) {
   // })
 
 
-  listener("touchstart", ".box, .macro-name, .draggable-box", e => {
-    // e.preventDefault();
-  }, { passive: false })
+  // listener("touchstart", ".box, .macro-name, .draggable-box", e => {
+  //   e.preventDefault();
+  // }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
     const trigger = e.target;
