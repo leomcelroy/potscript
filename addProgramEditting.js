@@ -101,6 +101,7 @@ export function addProgramEditting(state) {
 
     removed = true;
     dragged = true;
+    window.addEventListener("touchmove", listenerObject, {passive: false});
   })
 
   listener("pointerup", "", e => {
