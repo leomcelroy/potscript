@@ -36,7 +36,7 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
-    document.body.style.overflow = "hidden";
+    window.addEventListener("touchmove", listenerObject, {passive: false});
   })
 
   listener("pointerdown", ".macro-name", (e) => {
@@ -62,6 +62,7 @@ export function addProgramEditting(state) {
 
     fromToolbox = true;
 
+    window.addEventListener("touchmove", listenerObject, {passive: false});
   })
 
   listener("pointerdown", ".draggable-box", (e) => {
@@ -83,6 +84,7 @@ export function addProgramEditting(state) {
     STATE.mouse.x = e.clientX;
     STATE.mouse.y = e.clientY;
 
+    window.addEventListener("touchmove", listenerObject, {passive: false});
   });
 
   listener("pointermove", "", e => {
@@ -141,8 +143,7 @@ export function addProgramEditting(state) {
   })
 
   listener("pointerup", "", e => {
-    document.body.style.overflow = "scroll";
-
+    window.removeEventListener("touchmove", listenerObject, {passive: false});
     removed = false;
     fromToolbox = false;
     dragged = false;
