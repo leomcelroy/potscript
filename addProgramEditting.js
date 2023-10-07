@@ -9,9 +9,13 @@ export function addProgramEditting(state) {
   let dragged = false;
 
   let downTarget = null;
+  let initialX = null;
+  let initialY = null;
 
   listener("pointerdown", "", e => {
     downTarget = e.target;
+    initialX = e.clientX;
+    initialY = e.clientY;
   })
 
   listener("touchstart", ".box, .macro-name, .draggable-box", e => {
@@ -84,6 +88,10 @@ export function addProgramEditting(state) {
   });
 
   listener("pointermove", "", e => {
+    if (initialX === null || initialY === null) return;
+    const deltaX = event.clientX - initialX;
+    const deltaY = event.clientY - initialY;
+
     if (removed) return;
     if (fromToolbox) return;
     if (state.dragId === null) return;
@@ -96,7 +104,11 @@ export function addProgramEditting(state) {
     if (state.programs[name].length === 0 && name !== "main") delete state.programs[name];
 
     removed = true;
-    dragged = true;
+
+    if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+      dragged = true;
+    }
+    
   })
 
   listener("pointerup", "", e => {
