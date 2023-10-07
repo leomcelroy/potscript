@@ -11,14 +11,12 @@ export function addProgramEditting(state) {
 
   let downTarget = null;
 
-  listener("touchstart", ".draggable-box", e => {
-    
+  listener("touchend", ".draggable-box", e => {
     const { programName, index} = e.target.dataset;
 
     const value = state.programs[programName][index];
 
     state.editor = value;
-
   })
 
 
