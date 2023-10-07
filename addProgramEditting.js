@@ -17,7 +17,7 @@ export function addProgramEditting(state) {
       downTarget = e.target;
     }
 
-    if (downTarget === null) e.preventDefault();
+    e.preventDefault();
   }, { passive: false })
 
   listener("pointerdown", ".box", (e) => {
@@ -93,6 +93,8 @@ export function addProgramEditting(state) {
   });
 
   listener("pointermove", "", e => {
+    downTarget = null;
+
     if (removed) return;
     if (fromToolbox) return;
     if (state.dragId === null) return;
@@ -106,7 +108,6 @@ export function addProgramEditting(state) {
 
     removed = true;
     dragged = true;
-    downTarget = null;
   })
 
   listener("pointerup", "", e => {
