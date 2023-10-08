@@ -112,4 +112,15 @@ html, body {
     .box-container {
       padding-bottom: 15px;
     }
+
+    .program-boxes {
+      padding-bottom: 15px;
+    }
+
+    .bez-handle {
+      r: .08;
+    }
+
 }
+
+

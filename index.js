@@ -288,15 +288,15 @@ function view(state) {
       <div class="dictionary">
         ${prioritizeKey(Object.entries(state.programs), "main").map(drawProgram)}
       </div>
-      <div style="display: flex; justify-content: space-evenly; padding: 5px">
-        <button style="width: 150px; height: 30px;" @click=${() => {
+      <div style="display: flex; justify-content: space-evenly; padding: 5px; height: min-content;">
+        <button style="width: 150px; height: 100%;" @click=${() => {
           const json = JSON.stringify(state.programs);
           download("pot", "json", json);
         }}>save</button>
-        <button style="width: 150px; height: 30px;" @click=${evalProgram}>run</button>
-        <button style="width: 150px; height: 30px;" @click=${() => downloadGCode(state)}>download gcode</button>
-        <button style="width: 150px; height: 30px;" @click=${() => downloadSTL(state)}>download stl</button>
-        <button style="width: 150px; height: 30px;" @click=${() => {
+        <button style="width: 150px; height: 100%;" @click=${evalProgram}>run</button>
+        <button style="width: 150px; height: 100%;" @click=${() => downloadGCode(state)}>download gcode</button>
+        <button style="width: 150px; height: 100%;" @click=${() => downloadSTL(state)}>download stl</button>
+        <button style="width: 150px; height: 100%;" @click=${() => {
           state.programs[`m${macroCount}`] = [];
           macroCount++;
         }}>new macro</button>
